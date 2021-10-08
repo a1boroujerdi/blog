@@ -15,8 +15,8 @@ class CategoryController extends Controller
     public function index()
     {
        $edit=false;
-     
-        return view('category.index',compact('edit'));
+       $categories=Category::all();
+        return view('category.index',compact('edit','categories'));
     }
 
     /**
@@ -42,6 +42,7 @@ class CategoryController extends Controller
              'parent_id'=>$request->parent_id ?? 0,
              'subject'=>$request->subject
          ]);
+
          return redirect(route('category.index'));
     }
 
@@ -66,7 +67,9 @@ class CategoryController extends Controller
     {
         $edit=true;
         $category=Category::find($category);
-        return view('category.index',compact('category','edit'));
+        $parent_id=$category->parent_id;
+        $categories=Category::all();
+        return view('category.index',compact('category','edit','categories','parent_id'));
 
     }
 

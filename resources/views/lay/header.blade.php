@@ -61,36 +61,28 @@
           <span class="menu-title">Dashboard</span>
         </a>
       </li>
-      <li class="nav-item nav-category">Home</li>
+
+      @foreach ($categories as $category )
+        @if($category->parent_id==0)
+      <li class="nav-item nav-category">{{$category->name}}</li>
       <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic_{{$category->id}}" aria-expanded="false" aria-controls="ui-basic">
           <i class="menu-icon mdi mdi-floor-plan"></i>
-          <span class="menu-title">appartment</span>
+          <span class="menu-title">{{$category->name}}</span>
           <i class="menu-arrow"></i> 
         </a>
-        <div class="collapse" id="ui-basic">
+        <div class="collapse" id="ui-basic_{{$category->id}}">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="#">child1</a></li>
-            <li class="nav-item"> <a class="nav-link" href="#">child2</a></li>
-            <li class="nav-item"> <a class="nav-link" href="#">child3</a></li>
+
+          @foreach ($category->children as $child)
+          <li class="nav-item"> <a class="nav-link" href="#">{{$child->name}}</a></li>
+
+          @endforeach
           </ul>
         </div>
       </li>
-      <li class="nav-item nav-category">Mobile</li>
-      <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="ui-basic">
-          <i class="menu-icon mdi mdi-floor-plan"></i>
-          <span class="menu-title">iphone</span>
-          <i class="menu-arrow"></i> 
-        </a>
-        <div class="collapse" id="form-elements">
-          <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="#">child1</a></li>
-            <li class="nav-item"> <a class="nav-link" href="#">child2</a></li>
-            <li class="nav-item"> <a class="nav-link" href="#">child3</a></li>
-          </ul>
-        </div>
-      </li>
+      @endif
+      @endforeach
 
     </ul>
   </nav>

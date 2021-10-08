@@ -27,7 +27,16 @@
                         </div>
                         <div class="form-group">
                           <label for="exampleInputCity1">Parent_id</label>
-                          <input type="text" class="form-control" id="exampleInputCity1" value="{{($edit) ? $category->parent_id : ""}}"  name="parent_id">
+                          <select type="text" class="form-control" id="exampleInputCity1"  name="parent_id">
+                            <option>Main Category</option>
+                            @foreach ($categories as  $item)
+                              <option value="{{$item->id}}" {{$edit && $parent_id==$item->id ?'selected':''}}>{{$item->name}}</option>
+                              @foreach ($item->children as $child)
+                              <option value="{{$child->id}}" {{$edit && $parent_id==$item->id ?'selected':''}}>{{$item->name}}-->{{$child->name}}</option>
+                                    
+                              @endforeach
+                            @endforeach
+                          </select>
                         </div>
                         <div class="form-group">
                           <label for="exampleTextarea1">Subject</label>
