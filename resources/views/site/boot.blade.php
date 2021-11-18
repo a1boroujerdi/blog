@@ -3,55 +3,30 @@
 
 
 
-            <div class="row flex-grow">
-              <div class="col-6 grid-margin stretch-card">
+
+ <a class="btn btn-primary m-2" href="{{url('post')}}">Create Post</a>
+
+              <div class="row flex-grow">
+           
+        @foreach ($posts as $post )
+  
+              <div class="col-6 grid-margin stretch-card ">
                 <div class="card card-rounded table-darkBGImg">
                   <div class="card-body">
                     <div class="col-sm-3">
-                      <h3 class="text-white upgrade-info mb-0">
-                        Post 1 <span class="fw-bold">price</span> Desc
-                      </h3>
-                      <a href="#" class="btn btn-info upgrade-btn">Show</a>
+                      <h4 class="text-white upgrade-info mb-0 " >
+                        {{$post->name}}
+                      </h4>
+                       <img src="{{asset($post->file)}}" style="" class="image-site" >
+                       <a href="#" class="btn btn-info upgrade-btn">Show</a>
+                       <span class="fw-bold text-white" style="font-size: 15px;">Price:{{$post->price}}</span>
+                       <p class="fw-bold text-white"> {{$post->desc}}</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-6 grid-margin stretch-card">
-                <div class="card card-rounded table-darkBGImg">
-                  <div class="card-body">
-                    <div class="col-sm-3">
-                      <h3 class="text-white upgrade-info mb-0">
-                        Post 2 <span class="fw-bold">price</span> Desc
-                      </h3>
-                      <a href="#" class="btn btn-info upgrade-btn">Show</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-6 grid-margin stretch-card">
-                <div class="card card-rounded table-darkBGImg">
-                  <div class="card-body">
-                    <div class="col-sm-3">
-                      <h3 class="text-white upgrade-info mb-0">
-                        Post 3 <span class="fw-bold">Price</span> Desc
-                      </h3>
-                      <a href="#" class="btn btn-info upgrade-btn">Show</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-6 grid-margin stretch-card">
-                <div class="card card-rounded table-darkBGImg">
-                  <div class="card-body">
-                    <div class="col-sm-3">
-                      <h3 class="text-white upgrade-info mb-0">
-                        Post 4 <span class="fw-bold">Price</span> Desc
-                      </h3>
-                      <a href="#" class="btn btn-info upgrade-btn">Show</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
+         @endforeach
+
 
             </div>
 

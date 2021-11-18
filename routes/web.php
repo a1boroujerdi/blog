@@ -5,6 +5,9 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,12 +22,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[SiteController::class,'index']);
 Route::get('logout',[LoginController::class,'logout']);
-
+Route::resource('post',PostController::class);
+Route::resource('user',UserController::class);
 
 Route::middleware(['auth', 'isAdmin'])->group(function() {
 Route::get('admin',[AdminController::class,'index'])->name('admin');
 Route::resource('category', CategoryController::class);
 
-
- 
 });

@@ -4,23 +4,23 @@
         <section class="mb-4">
           <a
             class="btn btn-primary btn-floating m-1"
-            style="background-color: #3b5998;"
-            href="#!"
+            style="background-color: #3b5998; color:white"
+            {{-- href="{{asset((Auth::check()) ? Auth::user()->facebook : "" )}}" --}}
             role="button"
             ><i class="fab fa-facebook-f"></i
           ></a>
     
           <a
             class="btn btn-primary btn-floating m-1"
-            style="background-color: #55acee;"
-            href="#!"
+            style="background-color: #55acee; color:white"
+            {{-- href="{{asset((Auth::check()) ? Auth::user()->twitter : "" )}}" --}}
             role="button"
             ><i class="fab fa-twitter"></i
           ></a>
     
           <a
             class="btn btn-primary btn-floating m-1"
-            style="background-color: #dd4b39;"
+            style="background-color: #dd4b39; color:white"
             href="#!"
             role="button"
             ><i class="fab fa-google"></i
@@ -28,25 +28,24 @@
     
           <a
             class="btn btn-primary btn-floating m-1"
-            style="background-color: #ac2bac;"
-            href="#!"
+            style="background-color: #ac2bac; color:white"
+            {{-- href="{{asset((Auth::check()) ? Auth::user()->instagram : "" )}}" --}}
             role="button"
             ><i class="fab fa-instagram"></i
           ></a>
     
           <a
             class="btn btn-primary btn-floating m-1"
-            style="background-color: #0082ca;"
-            href="#!"
-            role="button"
-            ><i class="fab fa-linkedin-in"></i
-          ></a>
+            style="background-color: #0082ca; color:white"
+            {{-- href="{{asset((Auth::check()) ? Auth::user()->youtube : "" )}}" role="button" --}}
+            ><i class="fab fa-youtube"></i>
+          </a>
           <a
             class="btn btn-primary btn-floating m-1"
-            style="background-color: #333333;"
+            style="background-color: #333333; color:white"
             href="#!"
             role="button"
-            ><i class="fab fa-github"></i
+            ><i class="fab fa-github" >github</i
           ></a>
         </section>
       </div>
@@ -60,6 +59,7 @@
 
 <script src="{{asset('vendors/js/vendor.bundle.base.js')}}"></script>
 <script src="{{asset('vendors/bootstrap-datepicker/bootstrap-datepicker.min.js')}}"></script>
+
 
 </body>
 

@@ -33,7 +33,7 @@
                               <option value="{{$item->id}}" {{$edit && $parent_id==$item->id ?'selected':''}}>{{$item->name}}</option>
                               @foreach ($item->children as $child)
                               <option value="{{$child->id}}" {{$edit && $parent_id==$item->id ?'selected':''}}>{{$item->name}}-->{{$child->name}}</option>
-                                    
+                                  
                               @endforeach
                             @endforeach
                           </select>

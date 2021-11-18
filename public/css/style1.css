@@ -8726,12 +8726,29 @@ h1, .h1 {
 @media (min-width: 1200px) {
   h1, .h1 {
     font-size: 2.5rem;
+    /* font-size:5px !important; */
+  }
+
+}
+.image-site
+{
+  width: 100px !important;
+  margin: 10px;
+  }
+
+
+@media (min-width:800px) {
+  .image-site{
+  width: 300px !important;
   }
 }
+ h2, .h2 {
+   font-size: 10px !important;
+ }
 
-h2, .h2 {
+/* h2, .h2 {
   font-size: calc(1.325rem + 0.9vw);
-}
+} */
 
 @media (min-width: 1200px) {
   h2, .h2 {
@@ -13143,7 +13160,7 @@ fieldset:disabled .swal2-modal .swal2-buttonswrapper .swal2-styled,
 
 .card-body {
   flex: 1 1 auto;
-  padding: 1rem 1rem;
+  /* padding: 1rem 1rem; */
 }
 
 .card-title {
@@ -16256,6 +16273,7 @@ fieldset:disabled .swal2-modal .swal2-buttonswrapper .swal2-styled,
 
 .fw-bold {
   font-weight: 700 !important;
+  
 }
 
 .fw-bolder {
@@ -19694,8 +19712,8 @@ code {
 }
 
 .img-xs {
-  width: 32px;
-  height: 32px;
+  width: 60px;
+  height: 60px;
 }
 
 .img-ss, .settings-panel .color-tiles .tiles {
@@ -22269,7 +22287,7 @@ code {
 } */
 
 .card.table-darkBGImg {
-  background: #1E283D url('/images/darkBG.png') repeat-y right top;
+  background: #1E283D  repeat-y right top;
 }
 
 .card.tale-bg {
@@ -30796,3 +30814,4 @@ color:green;
 
 
 /*# sourceMappingURL=../maps/vertical-layout-light/style.css.map */
+

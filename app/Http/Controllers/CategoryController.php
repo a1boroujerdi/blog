@@ -40,7 +40,7 @@ class CategoryController extends Controller
          $category=Category::create([
              'name'=>$request->name,
              'parent_id'=>$request->parent_id ?? 0,
-             'subject'=>$request->subject
+             'subject'=>$request->subject,
          ]);
 
          return redirect(route('category.index'));

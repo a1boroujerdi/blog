@@ -7,12 +7,10 @@
       <title>Web Learn </title>
       <link rel="stylesheet" href="{{asset('vendors/mdi/css/materialdesignicons.min.css')}}">
       <link rel="stylesheet" href="{{asset('vendors/simple-line-icons/css/simple-line-icons.css')}}">
-      <!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
-      <!-- <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css"> -->
       <link rel="stylesheet" href="{{asset('js/select.dataTables.min.css')}}">
       <link rel="stylesheet" href="{{asset('css/style1.css')}}">
-      <!-- <link rel="shortcut icon" href="images/favicon.png" /> -->
     </head>
     <body>
       <div class="container-scroller"> 
@@ -27,24 +25,27 @@
               <a class="navbar-brand brand-logo" href="index.html">
                 <img src="{{asset('images/logo-laravel2.png')}}" style="width: 600px; height: 50px; image-resolution: 100%;" alt="logo" />
               </a>
-              <a class="navbar-brand brand-logo-mini" href="index.html">
-                <img src="{{asset('images/logo-mini.svg')}}" alt="logo" />
+              <a class="navbar-brand brand-logo-mini " href="index.html">
+                <img src="{{asset('images/logo-laravel2.png')}}" alt="logo" />
               </a>
             </div>
           </div>
           <div class="navbar-menu-wrapper d-flex align-items-top"> 
             <ul class="navbar-nav">
               <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-                <h1 class="welcome-text">Welcome to my site, <span class="text-black fw-bold">name_user</span></h1>
+                <h1 class="welcome-text">Welcome to my site, <span class="text-black fw-bold">{{(Auth::check()) ? Auth::user()->name : ''}}</span></h1>
                 <h3 class="welcome-sub-text">  </h3>
               </li>
             </ul>
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item dropdown d-none d-lg-block user-dropdown">
-                <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img class="img-xs rounded-circle" src="{{asset('images/avator.jfif')}}" alt="Profile image"> </a>
-              </li>
-            </ul>
+            @auth
+              <ul class="navbar-nav ms-auto">
+                <li class="nav-item  d-lg-block ">
+                  <a class="nav-link" id="UserDropdown" href="{{url('user')}}" aria-expanded="false">
+                    <img class="img-xs rounded-circle" src="{{asset(Auth::user()->image)}}" alt="Profile_image">
+                  </a>
+                </li>
+              </ul>
+            @endauth
             <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-bs-toggle="offcanvas">
               <span class="mdi mdi-menu"></span>
             </button>
@@ -66,17 +67,18 @@
         @if($category->parent_id==0)
       <li class="nav-item nav-category">{{$category->name}}</li>
       <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic_{{$category->id}}" aria-expanded="false" aria-controls="ui-basic">
+        <a class="nav-link" data-bs-toggle="collapse" href="#ui_basic_{{$category->id}}" aria-expanded="false" aria-controls="ui-basic">
           <i class="menu-icon mdi mdi-floor-plan"></i>
           <span class="menu-title">{{$category->name}}</span>
           <i class="menu-arrow"></i> 
         </a>
-        <div class="collapse" id="ui-basic_{{$category->id}}">
+        <div class="collapse" id="ui_basic_{{$category->id}}">
           <ul class="nav flex-column sub-menu">
 
           @foreach ($category->children as $child)
-          <li class="nav-item"> <a class="nav-link" href="#">{{$child->name}}</a></li>
-
+      
+          <li class="nav-item"> <a class="nav-link filter" href="{{\Request::fullUrlWithQuery(['category'=>$child->name])}}" >{{$child->name}}</a></li>
+         
           @endforeach
           </ul>
         </div>
@@ -84,7 +86,21 @@
       @endif
       @endforeach
 
+      <li class="nav-item p-2"><a type="button" href="{{url('/')}}" class="btn btn-warning">Remove Filter</a></li>
+
+      <form method="GET" action="{{url('/')}}" id="filter">
+               <input type="hidden" value="{{isset($searchedCategory) && $searchedCategory ? $searchedCategory->name :null}}" name="category">
+        <li class="nav-item p-2"><div class="input-group mb-3">
+          <label class="container">
+            <input type="checkbox" {{\Request::get('picture') && \Request::get('picture')=='on' ? 'checked' :null}}   name="picture" onchange="document.getElementById('filter').submit()">
+            <span class="location">Only Picture</span>
+          </label>
+        </li>
+      </form>
+
+
     </ul>
+
   </nav>
   <div class="main-panel">
     <div class="content-wrapper">
